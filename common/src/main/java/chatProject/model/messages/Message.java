@@ -42,7 +42,7 @@ public class Message<T> {
      * @return the user who sent the message
      */
     public UserInfo getSender() {
-        return sender;
+        return this.sender;
     }
 
     /**
@@ -50,7 +50,7 @@ public class Message<T> {
      * @return the message content
      */
     public T getMessage() {
-        return content;
+        return this.content;
     }
 
     @Override
