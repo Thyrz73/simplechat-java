@@ -37,7 +37,7 @@ public class Chatroom<T> {
      * @return the name of the chatroom
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Chatroom<T> {
      * @return the user who owns this chatroom
      */
     public UserInfo getOwner() {
-        return owner;
+        return this.owner;
     }
 
     /**
@@ -64,7 +64,7 @@ public class Chatroom<T> {
      * @return the new message created
      */
     public Message<T> addMessage(UserInfo userInfo, T content) {
-        final Message<T> message = new Message<>(0, null, content);
+        final Message<T> message = new Message<>(this.messages.size()+1, userInfo, content);
         this.messages.add(message);
         return message;
     }
