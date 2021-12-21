@@ -67,7 +67,7 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
      * @param json the Json (de)serializer to use
      * @param <T> the type of messages to use
      * @return a new instance of this class to use as a server
-     * @throws IOException not sure when ?
+     * @throws IOException not sure when ? Quand on ne peut pas ouvrir la socket
      */
     public static <T> ChatServer<T> initEmptyChat(int socketPort, Gson json) throws IOException {
 
@@ -78,17 +78,13 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
                 json);
 
         // open a dedicated thread to manage the socket for notifications.
-        final Thread socketThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        server.socketThread = new Thread(() -> {
                 try {
                     server.openSocket(socketPort);
                 } catch (IOException e) {
                     throw new RuntimeException("Unable to open new socket on port " + socketPort, e);
                 }
-            }
         });
-        server.socketThread = socketThread;
 
         //TODO: I should start the socket thread here
 
@@ -197,18 +193,20 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
      */
     public Optional<UserAccount> findUser(String userName) {
         // Test code
+        /*
         if (userName.equals("testUser")) {
             return Optional.of(new UserAccount(0, userName));
         } else {
             return Optional.empty();
         }
+        */
+
         // Real code
-        /*
         return chatInstance.getUsers().keySet().stream()
                 .map(UserInfo::getAccount)
                 .filter(account -> account.getUsername().equals(userName))
                 .findAny();
-        */
+
     }
 
     /**

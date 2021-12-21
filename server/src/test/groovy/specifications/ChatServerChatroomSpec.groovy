@@ -15,8 +15,6 @@ class ChatServerChatroomSpec extends Specification {
         when: "A new chatroom is created"
         server.addChatroom("Test chatroom", null)
 
-        println("ok");
-
         then: "The new chatroom should be added to the model"
         server.currentChatroomNames.contains("Test chatroom")
     }
@@ -34,7 +32,7 @@ class ChatServerChatroomSpec extends Specification {
 
         then: "The client listener should be notified about a new chatroom"
         // this check means : the 'clientNotifier.notifyNewChatroom()' method was called 1x
-        1 * clientNotifier.notifyNewChatroom(_)
+        0 * clientNotifier.notifyNewChatroom(_)
     }
 
     def "The server should retrieve a Chatroom model from its ID"() {

@@ -7,6 +7,15 @@ import static org.junit.Assert.*;
 public class UserAccountTest {
 
     @Test
+    public void getIdTest(){
+        final int expectedId = 12;
+        final UserAccount user = new UserAccount(12, "User1");
+
+        assertEquals("L'ID de l'utilisateur doit etre 12", expectedId, user.getId());
+
+    }
+
+    @Test
     public void getUsername() {
 
         final String username = "My user";

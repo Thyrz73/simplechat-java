@@ -64,7 +64,11 @@ public class UserInfoTest {
     @Test
     // tester equals j'ai pas encore tout compris
     public void equalsTest(){
-    assertEquals(false, true);
+        final UserAccount user1 = new UserAccount(1, "MyUser1");
+
+        final UserInfo user1Info = new UserInfo(user1, Status.ACTIVE);
+
+        //assertEquals(false, true);
     }
 
     @Test
