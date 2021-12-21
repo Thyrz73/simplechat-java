@@ -83,7 +83,12 @@ public class ChatInstance<T> {
      * @return the collection of users in the chat.
      */
     public Map<UserInfo, LocalTime> getUsers() {
-        return null;
+        Map<UserInfo, LocalTime> usersMap = new HashMap<UserInfo, LocalTime>();
+        List<Chatroom<T>> allChats = this.getCurentChatrooms();
+        allChats.forEach(chatroom -> {
+            usersMap.put(chatroom.getOwner(), LocalTime.now());
+        });
+        return usersMap;
     }
 
     /**
