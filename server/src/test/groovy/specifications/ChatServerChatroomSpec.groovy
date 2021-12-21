@@ -32,7 +32,7 @@ class ChatServerChatroomSpec extends Specification {
 
         then: "The client listener should be notified about a new chatroom"
         // this check means : the 'clientNotifier.notifyNewChatroom()' method was called 1x
-        0 * clientNotifier.notifyNewChatroom(_)
+        1 * clientNotifier.notifyNewChatroom(_)
     }
 
     def "The server should retrieve a Chatroom model from its ID"() {

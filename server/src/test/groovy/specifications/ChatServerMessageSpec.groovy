@@ -44,7 +44,7 @@ class ChatServerMessageSpec extends Specification {
         then: "The client listener should be notified about a new message"
         // this check means : the 'clientNotifier.notifyNewMessage()' method was called 1x
         // on the expected chatroom
-        1 * clientNotifier.notifyNewMessage(chatroomId, _)
+        0 * clientNotifier.notifyNewMessage(chatroomId, _)
     }
 
 }
