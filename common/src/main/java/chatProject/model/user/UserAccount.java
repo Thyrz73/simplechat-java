@@ -28,7 +28,7 @@ public class UserAccount {
      * @return the user unique ID
      */
     public int getId() {
-        return id;
+        return this.id;
     }
 
     /**

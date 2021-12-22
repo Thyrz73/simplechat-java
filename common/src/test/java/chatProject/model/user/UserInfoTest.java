@@ -61,15 +61,6 @@ public class UserInfoTest {
         assertEquals("Le test passe si ce qui est retourné est égale a la string attendue",shouldBe, user1Info.toString());
     }
 
-    @Test
-    // tester equals j'ai pas encore tout compris
-    public void equalsTest(){
-        final UserAccount user1 = new UserAccount(1, "MyUser1");
-
-        final UserInfo user1Info = new UserInfo(user1, Status.ACTIVE);
-
-        //assertEquals(false, true);
-    }
 
     @Test
     public void hashCodeTest(){
