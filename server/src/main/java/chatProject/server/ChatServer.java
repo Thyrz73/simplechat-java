@@ -199,23 +199,7 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
 
     }
 
-    /**
-     * Gets the list of users in the model with an active status.
-     * @return the list of connected users
-     */
-    public Collection<String> getConnectedUsers() {
-        return Optional.ofNullable(getUsers())
-                // get all users in the model
-                .map(users -> users.parallelStream()
-                        // filter to get only active users
-                        .filter(user -> user.getCurrentStatus() == Status.ACTIVE)
-                        // get username(s) from user models
-                        .map(user -> user.getAccount().getUsername())
-                        // collect results
-                        .collect(Collectors.toSet()))
-                // if getUsers() returns null - return an empty set
-                .orElse(Collections.emptySet());
-    }
+
 
     /**
      * {@inheritDoc}
