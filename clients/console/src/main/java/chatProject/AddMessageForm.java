@@ -23,7 +23,7 @@ public class AddMessageForm<T> {
      * @return the chatroom ID
      */
     public int getChatroomId() {
-        return chatroomId;
+        return this.chatroomId;
     }
 
     /**
@@ -31,7 +31,7 @@ public class AddMessageForm<T> {
      * @return the user who sent the message
      */
     public UserInfo getUser() {
-        return user;
+        return this.user;
     }
 
     /**
@@ -39,6 +39,6 @@ public class AddMessageForm<T> {
      * @return the message content
      */
     public T getContent() {
-        return content;
+        return this.content;
     }
 }

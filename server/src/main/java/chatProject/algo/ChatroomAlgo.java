@@ -20,10 +20,9 @@ public interface ChatroomAlgo<T> extends ChatroomsListener<T> {
 
     /**
      * Gets the model of a chatroom given its ID.
-     * @param chatroomId the chatroom ID
      * @return the model of the chatroom
      */
-    Chatroom<T> getChatroom(int chatroomId);
+    Chatroom<T> getChatroom();
 
     /**
      * Adds a new {@link Chatroom} in the model and notifies clients about it.

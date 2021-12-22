@@ -112,7 +112,7 @@ public class ChatClient<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
      * @return the current user in the class
      */
     public UserInfo getCurrentUser() {
-        return currentUser;
+        return this.currentUser;
     }
 
     /**

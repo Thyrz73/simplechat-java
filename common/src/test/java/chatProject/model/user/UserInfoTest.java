@@ -15,10 +15,8 @@ public class UserInfoTest {
 
         final UserInfo user1Info = new UserInfo(user1, Status.ACTIVE);
 
-        UserAccount account = user1;
-
         assertEquals("La recuperation de l'account de l'user doit etre le meme",
-                account, user1Info.getAccount());
+                user1, user1Info.getAccount());
 
 
     }

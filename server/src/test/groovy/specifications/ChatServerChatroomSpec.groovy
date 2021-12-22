@@ -44,7 +44,7 @@ class ChatServerChatroomSpec extends Specification {
 
         expect: "The chatroom model should be retrieved from its ID"
         // there is only 1 chatroom in the model - get it
-        server.getChatroom(0) == chatroom
+        server.getChatroom() == chatroom
     }
 
 }

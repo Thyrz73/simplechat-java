@@ -26,7 +26,7 @@ public class UserInfo {
      * @return the user account
      */
     public UserAccount getAccount() {
-        return account;
+        return this.account;
     }
 
     /**

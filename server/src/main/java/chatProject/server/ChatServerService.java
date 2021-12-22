@@ -41,7 +41,7 @@ public class ChatServerService<T> {
 
         get("/chatroom/:chatroomId", (request, response) ->
                 json.toJson(
-                        server.getChatroom(Integer.parseInt(request.params("chatroomId")))
+                        server.getChatroom()
                 )
         );
 

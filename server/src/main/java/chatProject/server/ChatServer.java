@@ -67,9 +67,8 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
      * @param json the Json (de)serializer to use
      * @param <T> the type of messages to use
      * @return a new instance of this class to use as a server
-     * @throws IOException not sure when ? Quand on ne peut pas ouvrir la socket
      */
-    public static <T> ChatServer<T> initEmptyChat(int socketPort, Gson json) throws IOException {
+    public static <T> ChatServer<T> initEmptyChat(int socketPort, Gson json) {
 
         // instantiate a new instance of this class with an empty model.
         final ChatServer<T> server = new ChatServer<>(
@@ -178,7 +177,7 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
     @Override
     public UserInfo login(String userName) {
         final UserInfo user = new UserInfo(
-                findUser(userName).orElse(new UserAccount(0, "test")),
+                findUser(userName).orElse(new UserAccount(new Random().nextInt(1000), userName)),
                 Status.ACTIVE // user just logged in - status is active
         );
         notifyUserChange(user);
@@ -192,15 +191,6 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
      * @return an optional {@link UserAccount} with the user model only if already in the model
      */
     public Optional<UserAccount> findUser(String userName) {
-        // Test code
-        /*
-        if (userName.equals("testUser")) {
-            return Optional.of(new UserAccount(0, userName));
-        } else {
-            return Optional.empty();
-        }
-        */
-
         // Real code
         return chatInstance.getUsers().keySet().stream()
                 .map(UserInfo::getAccount)
@@ -262,7 +252,7 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
      * {@inheritDoc}
      */
     @Override
-    public Chatroom<T> getChatroom(int chatroomId) {
+    public Chatroom<T> getChatroom() {
         return chatInstance.getCurentChatrooms().get(0);
     }
 
@@ -304,7 +294,7 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
      */
     @Override
     public List<Message<T>> getChatroomMessages(int chatroomId) {
-        return Optional.ofNullable(getChatroom(chatroomId))
+        return Optional.ofNullable(getChatroom())
                 .get()
                 .getCurrentMessages();
     }
@@ -314,10 +304,9 @@ public class ChatServer<T> implements UserAlgo, ChatroomAlgo<T>, MessageAlgo<T>,
      */
     @Override
     public Message<T> addMessage(int chatroomId, UserInfo user, T content) {
-        Message<T> newMessage = getChatroom(chatroomId).addMessage(user, content);
 
         // return new created message
-        return newMessage;
+        return getChatroom().addMessage(user, content);
     }
 
     /**

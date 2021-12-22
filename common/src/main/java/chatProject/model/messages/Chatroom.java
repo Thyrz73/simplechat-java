@@ -69,15 +69,6 @@ public class Chatroom<T> {
         return message;
     }
 
-    /**
-     * Stores a new message directly in this chatroom.
-     * @param newMessage the new message to store
-     * @return the new message
-     */
-    public Message<T> addMessage(Message<T> newMessage) {
-        this.messages.add(newMessage);
-        return newMessage;
-    }
 
     @Override
     public String toString() {
